@@ -9,7 +9,7 @@ This repository is the parent project for a collection of built demonstrations t
 
 ## Status
 
-- CWE-79
+- [CWE-79](./CWE-79/)
 - CWE-...
 
 ## Usage
