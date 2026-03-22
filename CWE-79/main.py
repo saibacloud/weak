@@ -6,14 +6,15 @@ from html import escape
 app = FastAPI()
 
 
-# List to store guestbook comments (this is our database).
+# List to store guestbook comments (this is our makeshift database).
 my_guestbook = [
-    "Welcome to my site!"
+    "Welcome to my site",
+    "Time to detonate some stuff"
 ]
 
 # Safe version for demonstrating proper database updates
 safe_guestbook = [
-    "Welcome to my site (Safe Mode)!"
+    "Welcome to my SAFE site!"
 ]
 
 # --- Type A (Reflected XSS) ---
@@ -21,13 +22,13 @@ safe_guestbook = [
 
 @app.get("/search", response_class=HTMLResponse)
 async def search(q: str = Query(None)):
-    # I handle the query parameter 'q'.
-    # If 'q' is missing, it defaults to None.
+    # For the purpose of this demonstration, some query handling
+    # If 'q' is missing, default to None.
 
     content_area = ""
     if q:
-        # VULNERABILITY: I take 'q' and put it directly into the HTML string.
-        # I do this so the user sees exactly what they typed.
+        # This is the vulnerability: take 'q' and put it directly into the HTML string.
+        # This tells the user what they searched for, a nice QoL feature.
         content_area = f"""
         <div class="box">
             <h3>You searched for: {q}</h3>
@@ -66,14 +67,13 @@ async def search(q: str = Query(None)):
 # --- Type B (Stored XSS) ---
 @app.get("/", response_class=HTMLResponse)
 async def display_guestbook():
-    # I generate the HTML for the GET request.
-    # I iterate over my_guestbook to show comments.
-    # VULNERABILITY: I inject the comment string directly into the HTML.
-    # I assume the data is safe because it came from my database.
+    # Iterate over my_guestbook to show comments.
+    # Vulnerability: inject the comment string directly into the HTML.
+    # Because the data came from my database, we assume it's safe/legit.
 
     comments_html = ""
     for c in my_guestbook:
-        # I intentionally do not escape 'c' here. I want the HTML to render as-is.
+        # Intentionally do not escape 'c', we want the HTML to render this.
         comments_html += f"<div class='box'>{c}</div>"
 
     html_content = f"""
@@ -110,13 +110,13 @@ async def display_guestbook():
 async def add_comment(request: Request):
     global my_guestbook
     try:
-        # I extract the form data manually.
+        # Extract the form data.
         form_data = await request.form()
 
-        # I get the specific comment.
+        # Get the specific comment.
         user_comment = form_data.get('comment')
 
-        # I save it exactly as received. I don't want to alter the user's input.
+        # Save the user comment as is.
         if user_comment:
             my_guestbook.append(user_comment)
 
@@ -134,15 +134,15 @@ async def add_comment(request: Request):
         """
 
 
-# --- SAFE MODE: Properly escaped HTML (for comparison) ---
+# --- SAFE MODE: Properly escaped HTML ---
 @app.get("/safe", response_class=HTMLResponse)
 async def display_safe_guestbook():
     # This demonstrates proper database list updates with HTML escaping.
-    # Comments are escaped before rendering, preventing XSS.
+    # Comments are escaped before rendering, preventing basic XSS.
 
     comments_html = ""
     for c in safe_guestbook:
-        # SECURE: I escape the comment to prevent XSS injection.
+        # Escape the comment to prevent the basic XSS injection.
         comments_html += f"<div class='box'>{escape(c)}</div>"
 
     html_content = f"""
@@ -180,21 +180,18 @@ async def display_safe_guestbook():
     return html_content
 
 
+# same as above
 @app.post("/safe", response_class=HTMLResponse)
 async def add_safe_comment(request: Request):
     global safe_guestbook
     try:
-        # I extract the form data.
         form_data = await request.form()
 
-        # I get the comment.
         user_comment = form_data.get('comment')
 
-        # I save it exactly as received.
         if user_comment:
             safe_guestbook.append(user_comment)
 
-        # After saving, I refresh and show the new comment (escaped).
         return await display_safe_guestbook()
     except Exception as e:
         return f"""

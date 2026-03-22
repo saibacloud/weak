@@ -1,4 +1,4 @@
-## FastAPI XSS Vulnerability Demonstration
+## Type A (Reflective) & B (Stored) XSS Vulnerability Demonstration
 
 This app demonstrates **Cross-Site Scripting (XSS)** vulnerabilities in two ways:
 1. **Vulnerable endpoints** - Shows how XSS attacks work
