@@ -92,7 +92,7 @@ Go to `/safe` to see the same functionality but **secure**:
 
 **Reflected XSS (in `/search`):**
 
-***This example is a QoL, it shows the user what they typed, but nothing is stored in the server, this just takes user input and injects into HTML directly***
+***This example is a QoL feature, it just shows the user what they typed as a response to their input and injects into HTML directly, nothing is stored on the server.***
 ```python
 
 content_area = f"<div class='box'><h3>You searched for: {q}</h3>"
@@ -101,7 +101,7 @@ The variable `{q}` is never escaped, so `<script>` becomes actual JavaScript.
 
 **Stored XSS (in `/`):**
 
-***This is submitting unsanitized data directly into a database, when another visitor views the page, the script that was injected by the actor, executes (including on subsequent refreshes)***
+***This is submitting unsanitized data directly into a database. The payload is staged in a database, waiting to be unknowingly called by an unsuspecting user. When the payload is called, the user will get that payload executed.***
 
 ```python
 
@@ -111,4 +111,4 @@ comments_html += f"<div class='box'>{c}</div>"
 Any comment stored in `my_guestbook` is rendered as-is.
 
 
-
+***This can lead to a number of outcomes, but most commonly this is used to steal cookies and session tokens, but can exfil other sensitive information.*** 
