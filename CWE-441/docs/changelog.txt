@@ -1,0 +1,5 @@
+CHANGELOG
+
+v1.0.0 - Initial release
+v1.1.0 - Added document portal
+v1.2.0 - Fixed some things, probably
