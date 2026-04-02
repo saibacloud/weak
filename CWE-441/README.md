@@ -2,7 +2,7 @@
 
 This app demonstrates **CWE-441: Unintended Proxy or Intermediary (Confused Deputy)** using **SSRF**.
 
-The idea is simple: there's a link-preview service that fetches URLs on your behalf. That server sits inside the network and can reach things you can't. If it'll fetch *anything* you tell it to, you can point it at internal services and get the response back — even though you'd normally have no route there.
+There's a link-preview service that fetches URLs on your behalf. That server sits inside the network and can reach things that you as a user, cannot. If it'll fetch *anything* you tell it to, you can point it at internal services and get the response back, even though you'd normally have no route there.
 
 ---
 
@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ```
 
 ## 2. Start Demo
-Two things need to be running — open two terminals.
+Open two terminals
 
 **Terminal 1 — the internal service** (the target):
 ```bash
