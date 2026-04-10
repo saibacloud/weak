@@ -12,10 +12,10 @@ app = FastAPI()
 # Fake sensitive config — the kind of stuff that should never leave the internal network.
 INTERNAL_CONFIG = {
     "db_host":     "db-prod-01.internal",
-    "db_password": "s3cr3t_prod_pw!",
-    "api_key":     "sk-internal-abc123xyz789",
-    "admin_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.internal",
-    "network":     "10.0.0.0/8",
+    "db_password": "ayo-my-SECRET-password-HAS-BEEn-EXPOSed",
+    "api_key":     "qqs123192u3oimemesjdlaskjdfh23u9o2u3o2u==",
+    "admin_token": "asdaao98i7assd9o32lojaiwsu3-ben-smells.internal",
+    "network":     "10.0.0.0/69",
     "note":        "This data was fetched by the confused deputy on your behalf.",
 }
 

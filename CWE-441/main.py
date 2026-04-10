@@ -59,12 +59,6 @@ async def index():
     <head><title>URL Fetcher (Vulnerable)</title><style>{CSS}</style></head>
     <body>
       {NAV}
-      <h1>URL Fetcher &#8212; Link Preview Service</h1>
-      <div class="warn">
-        <strong>Demo note:</strong> This is the <strong>vulnerable</strong> version.
-        The server (the deputy) fetches whatever URL you supply, using its own
-        network identity. It has access to internal services you cannot reach.
-      </div>
 
       <h3>Network topology:</h3>
       {TOPOLOGY}
@@ -160,10 +154,6 @@ async def safe_index():
         Try <code>http://localhost:8001/admin</code> &#8212; the server will resolve the
         hostname to a loopback address and block the request <em>before the deputy
         ever uses its network access</em>.
-      </p>
-      <p>
-        Try <code>http://169.254.169.254/latest/meta-data/</code> &#8212; blocked as
-        link-local (the cloud metadata range).
       </p>
     </body>
     </html>
