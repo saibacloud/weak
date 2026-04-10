@@ -6,3 +6,5 @@ Available files:
   - readme.txt
   - notice.txt
   - changelog.txt
+  - something else?
+  

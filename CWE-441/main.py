@@ -32,8 +32,8 @@ NAV = """
   <a href="/">&#9888; Vulnerable Fetcher</a> &nbsp;|&nbsp;
   <a href="/safe">&#10003; Safe Fetcher</a>
 </nav>
-"""
-
+""" 
+ 
 TOPOLOGY = """
 <pre style="background:#1e1e1e;color:#ddd;padding:14px;border-radius:6px;font-size:13px;overflow-x:auto">
   +-------------------------------------------------+

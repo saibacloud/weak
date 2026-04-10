@@ -29,4 +29,4 @@ async def admin_panel():
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "service": "internal-api", "port": 8001}
+    return {"status": "ok", "service": "internal-api", "port": 8001} 
