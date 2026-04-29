@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Weak Repo</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; padding: 20px; background: #fff; color: #111; max-width: 900px; margin: auto; }
+    h1 { margin-bottom: 4px; }
+    p  { margin: 4px 0 16px; }
+    table { border-collapse: collapse; width: 100%; }
+    td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #ccc; font-size: 0.9em; }
+    th { background: #ddd; }
+    a  { color: #111; }
+    .built { font-weight: bold; }
+    .stub  { color: #666; }
+    code { background: #eee; padding: 2px 5px; border-radius: 2px; font-size: 0.85em; }
+    .usage { border: 1px solid #bbb; background: #eee; padding: 12px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>A Weak Repo</h1>
+  <p>A collection of self-contained security weakness demonstrations.</p>
+
+  <table>
+    <tr>
+      <th>CWE</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><a href="CWE-22/README.md">CWE-22</a></td>
+      <td>Path Traversal</td>
+      <td>User-controlled path escapes the intended directory</td>
+      <td class="stub">Stub</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-79/README.md">CWE-79</a></td>
+      <td>Cross-Site Scripting</td>
+      <td>Reflected and stored XSS via unsanitised output</td>
+      <td class="built">Built</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-89/README.md">CWE-89</a></td>
+      <td>SQL Injection</td>
+      <td>Unsanitised query parameter passed to raw SQL</td>
+      <td class="stub">Stub</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-352/README.md">CWE-352</a></td>
+      <td>Cross-Site Request Forgery</td>
+      <td>State-changing request accepted without a CSRF token</td>
+      <td class="stub">Stub</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-370/README.md">CWE-370</a></td>
+      <td>Missing Revocation Re-check</td>
+      <td>Certificate revocation only checked at login</td>
+      <td class="built">Built</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-403/README.md">CWE-403</a></td>
+      <td>File Descriptor Leak</td>
+      <td>Subprocess inherits privileged fd via fork</td>
+      <td class="built">Built</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-434/README.md">CWE-434</a></td>
+      <td>Unrestricted File Upload</td>
+      <td>Uploaded file type not validated before saving</td>
+      <td class="stub">Stub</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-441/README.md">CWE-441</a></td>
+      <td>Confused Deputy / SSRF</td>
+      <td>Server fetches arbitrary URLs using its own network position</td>
+      <td class="built">Built</td>
+    </tr>
+    <tr>
+      <td><a href="CWE-444/README.md">CWE-444</a></td>
+      <td>HTTP Request Smuggling</td>
+      <td>Ambiguous Content-Length vs Transfer-Encoding headers exploited</td>
+      <td class="built">Built</td>
+    </tr>
+  </table>
+
+  <div class="usage">
+    <strong>Usage:</strong> Each demo runs independently.<br><br>
+    <code>cd CWE-NNN</code><br>
+    <code>python -m venv .venv &amp;&amp; source .venv/bin/activate &amp;&amp; pip install -r requirements.txt</code><br>
+    <code>uvicorn main:app --reload --port 5000</code>
+  </div>
+</body>
+</html>
